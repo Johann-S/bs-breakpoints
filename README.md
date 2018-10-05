@@ -83,7 +83,7 @@ It'll add a listener on the window `resize` event and emit `new.bs.breakpoint` e
 
 Detect the current breakpoint and return it.
 
-### getCurrentBreakPoint
+### getCurrentBreakpoint
 
 Return the current breakpoint.
 

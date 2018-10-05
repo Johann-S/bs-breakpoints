@@ -60,7 +60,7 @@
     return window.$ || window.jQuery;
   };
 
-  var detectBreakPoint = function detectBreakPoint() {
+  var _detectBreakPoint = function _detectBreakPoint() {
     var widthWindow = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
     for (var key in breakPoints) {
@@ -97,12 +97,16 @@
 
   var bsBreakpoints = {
     init: function init() {
-      dispatchBreakpoint(detectBreakPoint(), Events.INIT);
+      dispatchBreakpoint(_detectBreakPoint(), Events.INIT);
       window.addEventListener('resize', function () {
-        dispatchBreakpoint(detectBreakPoint());
+        dispatchBreakpoint(_detectBreakPoint());
       });
     },
-    getCurrentBreakPoint: function getCurrentBreakPoint() {
+    detectBreakpoint: function detectBreakpoint() {
+      currentBreakpoint = _detectBreakPoint();
+      return currentBreakpoint;
+    },
+    getCurrentBreakpoint: function getCurrentBreakpoint() {
       return currentBreakpoint;
     }
   };

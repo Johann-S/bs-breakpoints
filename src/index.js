@@ -79,7 +79,7 @@ const bsBreakpoints = {
     return currentBreakpoint
   },
 
-  getCurrentBreakPoint () {
+  getCurrentBreakpoint () {
     return currentBreakpoint
   }
 }

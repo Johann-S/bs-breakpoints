@@ -1,7 +1,7 @@
 declare const bsBreakpoints: {
   init(): void;
   detectBreakpoint(): string;
-  getCurrentBreakPoint(): string;
+  getCurrentBreakpoint(): string;
 };
 
 export default bsBreakpoints;
