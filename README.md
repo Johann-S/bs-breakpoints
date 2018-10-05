@@ -3,6 +3,7 @@
 [![dependencies Status](https://img.shields.io/david/Johann-S/bs-breakpoints.svg)](https://david-dm.org/Johann-S/bs-breakpoints)
 [![devDependencies Status](https://img.shields.io/david/dev/Johann-S/bs-breakpoints.svg)](https://david-dm.org/Johann-S/bs-breakpoints?type=dev)
 [![Build Status](https://img.shields.io/travis/Johann-S/bs-breakpoints/master.svg)](https://travis-ci.org/Johann-S/bs-breakpoints)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com/)
 [![JS gzip size](https://img.badgesize.io/Johann-S/bs-breakpoints/master/dist/bs-breakpoints.min.js?compression=gzip&label=JS+gzip+size)](https://github.com/Johann-S/bs-breakpoints/tree/master/dist/bs-breakpoints.min.js)
 
 A plugin which detect Bootstrap 4 breakpoints and emit when there is a change.
@@ -22,6 +23,7 @@ Features:
 - [Install](#install)
 - [How to use it](#how-to-use-it)
 - [Methods](#methods)
+- [Events](#events)
 - [Support me](#support-me)
 - [License](#license)
 
@@ -77,13 +79,13 @@ Will detect the current breakpoint and emit `init.bs.breakpoint` event.
 
 It'll add a listener on the window `resize` event and emit `new.bs.breakpoint` event.
 
-### getCurrentBreakPoint
-
-Return the current breakpoint.
-
 ### detectBreakpoint
 
 Detect the current breakpoint and return it.
+
+### getCurrentBreakPoint
+
+Return the current breakpoint.
 
 ## Events
 
