@@ -32,7 +32,7 @@ const Events = {
 
 const getJQuery = () => window.$ || window.jQuery
 
-const detectBreakPoint = () => {
+const _detectBreakPoint = () => {
   const widthWindow = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
 
   for (const key in breakPoints) {
@@ -67,14 +67,19 @@ const dispatchBreakpoint = (breakPointKey, eventName = Events.NEW) => {
 
 const bsBreakpoints = {
   init () {
-    dispatchBreakpoint(detectBreakPoint(), Events.INIT)
+    dispatchBreakpoint(_detectBreakPoint(), Events.INIT)
 
     window.addEventListener('resize', () => {
-      dispatchBreakpoint(detectBreakPoint())
+      dispatchBreakpoint(_detectBreakPoint())
     })
   },
 
   getCurrentBreakPoint () {
+    return currentBreakpoint
+  },
+
+  detectBreakpoint () {
+    currentBreakpoint = _detectBreakPoint()
     return currentBreakpoint
   }
 }
