@@ -1,5 +1,6 @@
 # bs-breakpoints
 
+[![npm version](https://img.shields.io/npm/v/bs-breakpoints.svg)](https://www.npmjs.com/package/bs-breakpoints)
 [![dependencies Status](https://img.shields.io/david/Johann-S/bs-breakpoints.svg)](https://david-dm.org/Johann-S/bs-breakpoints)
 [![devDependencies Status](https://img.shields.io/david/dev/Johann-S/bs-breakpoints.svg)](https://david-dm.org/Johann-S/bs-breakpoints?type=dev)
 [![Build Status](https://img.shields.io/travis/Johann-S/bs-breakpoints/master.svg)](https://travis-ci.org/Johann-S/bs-breakpoints)
@@ -8,7 +9,7 @@
 
 A plugin which detect Bootstrap 4 breakpoints and emit when there is a change.
 
-You can use it on React and Angular too because this plugin is written with the most used JavaScript framework: [VanillaJS](http://vanilla-js.com/).
+You can use it on [React](https://stackblitz.com/edit/bs-breakpoints-react) and [Angular](https://stackblitz.com/edit/bs-breakpoints-angular) too because this plugin is written with the most used JavaScript framework: [VanillaJS](http://vanilla-js.com/).
 
 Features:
 
