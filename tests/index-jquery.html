@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <title>bsBreakpoints</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>bsBreakpoints</h1>
+      <div>
+        <p>
+          Current breakpoint : <span id="cBreakPoint" class="badge badge-primary"></span>
+        </p>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="dist/bs-breakpoints.js"></script>
+    <script>
+      $(function () {
+        var $cBreakPoint = $('#cBreakPoint')
+
+        $(window).on('init.bs.breakpoint', function (e) {
+          $cBreakPoint.text(e.breakpoint)
+          console.warn(e)
+        })
+        $(window).on('new.bs.breakpoint', function (e) {
+          $cBreakPoint.text(e.breakpoint)
+          console.warn(e)
+        })
+
+        bsBreakpoints.init()
+      })
+    </script>
+  </body>
+</html>
