@@ -74,12 +74,12 @@ const bsBreakpoints = {
     })
   },
 
-  getCurrentBreakPoint () {
+  detectBreakpoint () {
+    currentBreakpoint = _detectBreakPoint()
     return currentBreakpoint
   },
 
-  detectBreakpoint () {
-    currentBreakpoint = _detectBreakPoint()
+  getCurrentBreakPoint () {
     return currentBreakpoint
   }
 }

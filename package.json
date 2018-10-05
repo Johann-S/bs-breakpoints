@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A plugin which detect Bootstrap 4 breakpoints and emit when there is a change",
   "author": "Johann-S <johann.servoire@gmail.com>",
-  "main": "bs-breakpoints.js",
+  "main": "dist/bs-breakpoints.js",
+  "types": "bs-breakpoints.d.ts",
   "bugs": {
     "url": "https://github.com/Johann-S/bs-breakpoints/issues"
   },
@@ -17,7 +18,8 @@
     "standard": "standard"
   },
   "files": [
-    "dist/*.{js,map}"
+    "dist/*.{js,map}",
+    "bs-breakpoints.d.ts"
   ],
   "keywords": [
     "bootstrap",
