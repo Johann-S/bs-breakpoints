@@ -108,4 +108,4 @@ If you want to thank me, you can support me and become my [Patron](https://www.p
 
 ## License
 
-[MIT](https://github.com/Johann-S/bs-custom-file-input/blob/master/LICENSE)
+[MIT](https://github.com/Johann-S/bs-breakpoints/blob/master/LICENSE)
