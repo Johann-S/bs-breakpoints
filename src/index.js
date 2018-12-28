@@ -32,6 +32,31 @@ const Events = {
 
 const getJQuery = () => window.$ || window.jQuery
 
+const getBreakPoints = () => {
+  const minSmall = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-sm'), 10)
+  const minMedium = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-md'), 10)
+  const minLarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-lg'), 10)
+  const minXlarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-xl'), 10)
+
+  // update xSmall
+  breakPoints.xSmall.max = minSmall - 1
+
+  // update small
+  breakPoints.small.min = minSmall
+  breakPoints.small.max = minMedium - 1
+
+  // update medium
+  breakPoints.medium.min = minMedium
+  breakPoints.medium.max = minLarge - 1
+
+  // update large
+  breakPoints.large.min = minLarge
+  breakPoints.large.max = minXlarge - 1
+
+  // update XL
+  breakPoints.xLarge.min = minXlarge
+}
+
 const _detectBreakPoint = () => {
   const widthWindow = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
 
@@ -67,6 +92,7 @@ const dispatchBreakpoint = (breakPointKey, eventName = Events.NEW) => {
 
 const bsBreakpoints = {
   init () {
+    getBreakPoints()
     dispatchBreakpoint(_detectBreakPoint(), Events.INIT)
 
     window.addEventListener('resize', () => {
