@@ -20,7 +20,8 @@
   },
   "files": [
     "dist/*.{js,map}",
-    "bs-breakpoints.d.ts"
+    "bs-breakpoints.d.ts",
+    "CHANGELOG.md"
   ],
   "keywords": [
     "bootstrap",
