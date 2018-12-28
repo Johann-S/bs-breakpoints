@@ -1,13 +1,13 @@
 /*!
- * bsBreakpoints v1.0.0 (https://github.com/Johann-S/bs-breakpoints)
+ * bsBreakpoints v1.1.0 (https://github.com/Johann-S/bs-breakpoints)
  * Copyright 2018 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-breakpoints/blob/master/LICENSE)
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.bsBreakpoints = factory());
-}(this, (function () { 'use strict';
+  (global = global || self, global.bsBreakpoints = factory());
+}(this, function () { 'use strict';
 
   (function () {
     // Add polyfill for Custom Events
@@ -50,6 +50,7 @@
       max: Infinity
     }
   };
+  var breakPointsDetected = false;
   var currentBreakpoint = null;
   var Events = {
     INIT: 'init.bs.breakpoint',
@@ -58,6 +59,27 @@
 
   var getJQuery = function getJQuery() {
     return window.$ || window.jQuery;
+  };
+
+  var getBreakPoints = function getBreakPoints() {
+    var minSmall = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-sm'), 10);
+    var minMedium = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-md'), 10);
+    var minLarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-lg'), 10);
+    var minXlarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-xl'), 10); // update xSmall
+
+    breakPoints.xSmall.max = minSmall - 1; // update small
+
+    breakPoints.small.min = minSmall;
+    breakPoints.small.max = minMedium - 1; // update medium
+
+    breakPoints.medium.min = minMedium;
+    breakPoints.medium.max = minLarge - 1; // update large
+
+    breakPoints.large.min = minLarge;
+    breakPoints.large.max = minXlarge - 1; // update XL
+
+    breakPoints.xLarge.min = minXlarge;
+    breakPointsDetected = true;
   };
 
   var _detectBreakPoint = function _detectBreakPoint() {
@@ -97,12 +119,17 @@
 
   var bsBreakpoints = {
     init: function init() {
+      getBreakPoints();
       dispatchBreakpoint(_detectBreakPoint(), Events.INIT);
       window.addEventListener('resize', function () {
         dispatchBreakpoint(_detectBreakPoint());
       });
     },
     detectBreakpoint: function detectBreakpoint() {
+      if (!breakPointsDetected) {
+        getBreakPoints();
+      }
+
       currentBreakpoint = _detectBreakPoint();
       return currentBreakpoint;
     },
@@ -113,5 +140,5 @@
 
   return bsBreakpoints;
 
-})));
+}));
 //# sourceMappingURL=bs-breakpoints.js.map
