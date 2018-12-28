@@ -16,6 +16,7 @@ Features:
 - Works with Bootstrap 4
 - Works without *dependencies* and **jQuery**
 - **Can** work with jQuery if detected
+- Detect custom breakpoints in CSS properties
 - Built in UMD to be used everywhere
 - Small, only **2kb** and less if you gzip it
 
