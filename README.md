@@ -30,18 +30,21 @@ Features:
 
 ## Install
 
-### With npm
+### With npm or yarn
 
 ```sh
 npm install bs-breakpoints --save
+
+// yarn
+yarn add bs-breakpoints
 ```
 
 ### CDN
 
 CDN | Link
 ------------ | -------------
-unpkg | [`https://unpkg.com/bs-breakpoints`](https://unpkg.com/bs-breakpoints)
-unpkg, minified | [`https://unpkg.com/bs-breakpoints/dist/bs-breakpoints.min.js`](https://unpkg.com/bs-breakpoints/dist/bs-breakpoints.min.js)
+jsDelivr | [`https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.js`](https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.js)
+jsDelivr, minified | [`https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.min.js`](https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.min.js)
 
 ## How to use it
 
