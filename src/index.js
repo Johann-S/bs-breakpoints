@@ -23,6 +23,7 @@ const breakPoints = {
   }
 }
 
+let breakPointsDetected = false
 let currentBreakpoint = null
 
 const Events = {
@@ -55,6 +56,8 @@ const getBreakPoints = () => {
 
   // update XL
   breakPoints.xLarge.min = minXlarge
+
+  breakPointsDetected = true
 }
 
 const _detectBreakPoint = () => {
@@ -101,6 +104,10 @@ const bsBreakpoints = {
   },
 
   detectBreakpoint () {
+    if (!breakPointsDetected) {
+      getBreakPoints()
+    }
+
     currentBreakpoint = _detectBreakPoint()
     return currentBreakpoint
   },
