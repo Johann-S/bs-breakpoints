@@ -1,6 +1,6 @@
 /*!
- * bsBreakpoints v1.1.0 (https://github.com/Johann-S/bs-breakpoints)
- * Copyright 2018 Johann-S <johann.servoire@gmail.com>
+ * bsBreakpoints v1.1.1 (https://github.com/Johann-S/bs-breakpoints)
+ * Copyright 2018 - 2019 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-breakpoints/blob/master/LICENSE)
  */
 (function (global, factory) {
@@ -58,7 +58,7 @@
   };
 
   var getJQuery = function getJQuery() {
-    return window.$ || window.jQuery;
+    return window.jQuery;
   };
 
   var getBreakPoints = function getBreakPoints() {
@@ -86,7 +86,7 @@
     var widthWindow = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
     for (var key in breakPoints) {
-      if (widthWindow < breakPoints[key].max && widthWindow >= breakPoints[key].min) {
+      if (widthWindow <= breakPoints[key].max && widthWindow >= breakPoints[key].min) {
         return key;
       }
     }
@@ -99,7 +99,7 @@
       eventName = Events.NEW;
     }
 
-    if (currentBreakpoint === null || currentBreakpoint !== breakPointKey) {
+    if (!currentBreakpoint || currentBreakpoint !== breakPointKey) {
       currentBreakpoint = breakPointKey;
       var $ = getJQuery();
 
