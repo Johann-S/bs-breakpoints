@@ -64,7 +64,7 @@ const _detectBreakPoint = () => {
   const widthWindow = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
 
   for (const key in breakPoints) {
-    if (widthWindow < breakPoints[key].max && widthWindow >= breakPoints[key].min) {
+    if (widthWindow <= breakPoints[key].max && widthWindow >= breakPoints[key].min) {
       return key
     }
   }
