@@ -14,7 +14,7 @@ const conf = {
     banner:
 `/*!
  * bsBreakpoints v${pkg.version} (${pkg.homepage})
- * Copyright ${year} ${pkg.author}
+ * Copyright 2018 - ${year} ${pkg.author}
  * Licensed under MIT (https://github.com/Johann-S/bs-breakpoints/blob/master/LICENSE)
  */`,
     file: './dist/bs-breakpoints.js',
