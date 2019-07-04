@@ -31,7 +31,7 @@ const Events = {
   NEW: 'new.bs.breakpoint'
 }
 
-const getJQuery = () => window.$ || window.jQuery
+const getJQuery = () => window.jQuery
 
 const getBreakPoints = () => {
   const minSmall = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-sm'), 10)
@@ -73,7 +73,7 @@ const _detectBreakPoint = () => {
 }
 
 const dispatchBreakpoint = (breakPointKey, eventName = Events.NEW) => {
-  if (currentBreakpoint === null || currentBreakpoint !== breakPointKey) {
+  if (!currentBreakpoint || currentBreakpoint !== breakPointKey) {
     currentBreakpoint = breakPointKey
     const $ = getJQuery()
 
