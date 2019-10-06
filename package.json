@@ -38,14 +38,14 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
     "bootstrap": "^4.3.1",
-    "rollup": "^1.16.4",
+    "rollup": "^1.23.1",
     "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-uglify": "^6.0.2",
-    "standard": "^12.0.1",
-    "standard-version": "^6.0.1"
+    "rollup-plugin-uglify": "^6.0.3",
+    "standard": "^14.3.1",
+    "standard-version": "^7.0.0"
   },
   "standard": {
     "ignore": [
