@@ -9,7 +9,7 @@
     "url": "https://github.com/Johann-S/bs-breakpoints/issues"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "scripts": {
     "build": "rollup -c && rollup -c --environment PROD",
@@ -37,14 +37,14 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "bootstrap": "^4.4.1",
-    "rollup": "^2.1.0",
-    "rollup-plugin-babel": "^4.4.0",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@rollup/plugin-babel": "^5.0.4",
+    "bootstrap": "^4.5.0",
+    "rollup": "^2.18.2",
     "rollup-plugin-uglify": "^6.0.4",
-    "standard": "^14.3.3",
-    "standard-version": "^7.1.0"
+    "standard": "^14.3.4",
+    "standard-version": "^8.0.0"
   },
   "standard": {
     "ignore": [

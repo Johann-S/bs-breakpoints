@@ -1,5 +1,5 @@
 const path = require('path')
-const babel = require('rollup-plugin-babel')
+const { babel } = require('@rollup/plugin-babel')
 const { uglify } = require('rollup-plugin-uglify')
 
 const pkg = require(path.resolve(__dirname, 'package.json'))
@@ -24,7 +24,9 @@ const conf = {
   },
   plugins: [
     babel({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      // Include the helpers in the bundle, at most one copy of each
+      babelHelpers: 'bundled'
     })
   ]
 }
