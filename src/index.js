@@ -1,6 +1,7 @@
 import './polyfill'
+import {getBreakpointsCssProps} from './utility'
 
-const breakPoints = {
+const defaultBreakPoints = {
   xSmall: {
     min: 0,
     max: 575
@@ -23,6 +24,16 @@ const breakPoints = {
   }
 }
 
+const nameMapping = {
+  xs: "xSmall",
+  sm: "small",
+  md: "medium",
+  lg: "large",
+  xl: "xLarge"
+}
+
+let breakPoints = {}
+
 let breakPointsDetected = false
 let currentBreakpoint = null
 
@@ -33,7 +44,32 @@ const Events = {
 
 const getJQuery = () => window.jQuery
 
+const getPropsValue = () => {
+  return getBreakpointsCssProps().map((prop) => {
+    return {
+      name: prop.replace("--breakpoint-", ""),
+      value: parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(prop), 10)
+    }
+  })
+}
+
 const getBreakPoints = () => {
+  // get values
+  const propsVal = getPropsValue()
+
+  for(const bp in propsVal){
+    const key = nameMapping[propsVal[bp].name] ? nameMapping[propsVal[bp].name] : propsVal[bp].name;
+    const nextItem = parseInt(bp) + 1;
+    (key in breakPoints) || (breakPoints[key]={})
+
+    // update Breakpoints
+    breakPoints[key].min =  propsVal[bp].value;
+    breakPoints[key].max =  propsVal[nextItem] ? propsVal[nextItem].value - 1 : Infinity;
+  }
+
+}
+
+const getOldBreakPoints = () => {
   const minSmall = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-sm'), 10)
   const minMedium = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-md'), 10)
   const minLarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-lg'), 10)
@@ -96,6 +132,7 @@ const dispatchBreakpoint = (breakPointKey, eventName = Events.NEW) => {
 const bsBreakpoints = {
   init () {
     getBreakPoints()
+    getOldBreakPoints()
     dispatchBreakpoint(_detectBreakPoint(), Events.INIT)
 
     window.addEventListener('resize', () => {
