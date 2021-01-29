@@ -24,6 +24,9 @@ const defaultBreakPoints = {
   }
 }
 
+let breakPoints = {}
+
+// Backward compatibility: default breakpoints naming
 const nameMapping = {
   xs: "xSmall",
   sm: "small",
@@ -31,8 +34,6 @@ const nameMapping = {
   lg: "large",
   xl: "xLarge"
 }
-
-let breakPoints = {}
 
 let breakPointsDetected = false
 let currentBreakpoint = null
@@ -54,17 +55,21 @@ const getPropsValue = () => {
 }
 
 const getBreakPoints = () => {
-  // get values
+  // get breakpoints from Bootstrap CSS variables
   const propsVal = getPropsValue()
 
-  for(const bp in propsVal){
-    const key = nameMapping[propsVal[bp].name] ? nameMapping[propsVal[bp].name] : propsVal[bp].name;
-    const nextItem = parseInt(bp) + 1;
-    (key in breakPoints) || (breakPoints[key]={})
-
-    // update Breakpoints
-    breakPoints[key].min =  propsVal[bp].value;
-    breakPoints[key].max =  propsVal[nextItem] ? propsVal[nextItem].value - 1 : Infinity;
+  if(propsVal.length) {
+    for(const bp in propsVal) {
+      const key = nameMapping[propsVal[bp].name] ? nameMapping[propsVal[bp].name] : propsVal[bp].name;
+      const nextItem = parseInt(bp) + 1;
+      (key in breakPoints) || (breakPoints[key]={})
+      // update Breakpoints
+      breakPoints[key].min =  propsVal[bp].value;
+      breakPoints[key].max =  propsVal[nextItem] ? propsVal[nextItem].value - 1 : Infinity;
+    }
+  } else {
+    // If there are no css variables get the default breakpoints
+    breakPoints = defaultBreakPoints;
   }
 
   breakPointsDetected = true
