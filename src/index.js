@@ -1,5 +1,5 @@
 import './polyfill'
-import {getBreakpointsCssProps} from './utility'
+import { getBreakpointsCssProps } from './utility'
 
 const defaultBreakPoints = {
   xSmall: {
@@ -28,11 +28,11 @@ let breakPoints = {}
 
 // Backward compatibility: default breakpoints naming
 const nameMapping = {
-  xs: "xSmall",
-  sm: "small",
-  md: "medium",
-  lg: "large",
-  xl: "xLarge"
+  xs: 'xSmall',
+  sm: 'small',
+  md: 'medium',
+  lg: 'large',
+  xl: 'xLarge'
 }
 
 let breakPointsDetected = false
@@ -48,8 +48,13 @@ const getJQuery = () => window.jQuery
 const getPropsValue = () => {
   return getBreakpointsCssProps().map((prop) => {
     return {
-      name: prop.replace("--breakpoint-", ""),
-      value: parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(prop), 10)
+      name: prop.replace('--breakpoint-', ''),
+      value: parseInt(
+        window
+          .getComputedStyle(document.documentElement)
+          .getPropertyValue(prop),
+        10
+      )
     }
   })
 }
@@ -58,28 +63,38 @@ const getBreakPoints = () => {
   // get breakpoints from Bootstrap CSS variables
   const propsVal = getPropsValue()
 
-  if(propsVal.length) {
-    for(const bp in propsVal) {
-      const key = nameMapping[propsVal[bp].name] ? nameMapping[propsVal[bp].name] : propsVal[bp].name;
-      const nextItem = parseInt(bp) + 1;
-      (key in breakPoints) || (breakPoints[key]={})
+  if (propsVal.length) {
+    for (const bp in propsVal) {
+      const key = nameMapping[propsVal[bp].name]
+        ? nameMapping[propsVal[bp].name]
+        : propsVal[bp].name
+      const nextItem = parseInt(bp) + 1
+      key in breakPoints || (breakPoints[key] = {})
       // update Breakpoints
-      breakPoints[key].min =  propsVal[bp].value;
-      breakPoints[key].max =  propsVal[nextItem] ? propsVal[nextItem].value - 1 : Infinity;
+      breakPoints[key].min = propsVal[bp].value
+      breakPoints[key].max = propsVal[nextItem]
+        ? propsVal[nextItem].value - 1
+        : Infinity
     }
   } else {
     // If there are no css variables get the default breakpoints
-    breakPoints = defaultBreakPoints;
+    breakPoints = defaultBreakPoints
   }
 
   breakPointsDetected = true
 }
 
 const _detectBreakPoint = () => {
-  const widthWindow = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+  const widthWindow = Math.max(
+    document.documentElement.clientWidth,
+    window.innerWidth || 0
+  )
 
   for (const key in breakPoints) {
-    if (widthWindow <= breakPoints[key].max && widthWindow >= breakPoints[key].min) {
+    if (
+      widthWindow <= breakPoints[key].max &&
+      widthWindow >= breakPoints[key].min
+    ) {
       return key
     }
   }
