@@ -1,13 +1,13 @@
 /*!
  * bsBreakpoints v1.1.1 (https://github.com/Johann-S/bs-breakpoints)
- * Copyright 2018 - 2019 Johann-S <johann.servoire@gmail.com>
+ * Copyright 2018 - 2021 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-breakpoints/blob/master/LICENSE)
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.bsBreakpoints = factory());
-}(this, function () { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.bsBreakpoints = factory());
+}(this, (function () { 'use strict';
 
   (function () {
     // Add polyfill for Custom Events
@@ -28,7 +28,19 @@
     }
   })();
 
-  var breakPoints = {
+  var getBreakpointsCssProps = function getBreakpointsCssProps() {
+    return Array.from(document.styleSheets).filter(function (sheet) {
+      return sheet.href === null || sheet.href.startsWith(window.location.origin);
+    }).reduce(function (acc, sheet) {
+      return acc = [].concat(acc, Array.from(sheet.cssRules).reduce(function (def, rule) {
+        return def = rule.selectorText === ':root' ? [].concat(def, Array.from(rule.style).filter(function (name) {
+          return name.startsWith('--breakpoint');
+        })) : def;
+      }, []));
+    }, []);
+  };
+
+  var defaultBreakPoints = {
     xSmall: {
       min: 0,
       max: 575
@@ -50,6 +62,15 @@
       max: Infinity
     }
   };
+  var breakPoints = {}; // Backward compatibility: default breakpoints naming
+
+  var nameMapping = {
+    xs: 'xSmall',
+    sm: 'small',
+    md: 'medium',
+    lg: 'large',
+    xl: 'xLarge'
+  };
   var breakPointsDetected = false;
   var currentBreakpoint = null;
   var Events = {
@@ -61,24 +82,33 @@
     return window.jQuery;
   };
 
+  var getPropsValue = function getPropsValue() {
+    return getBreakpointsCssProps().map(function (prop) {
+      return {
+        name: prop.replace('--breakpoint-', ''),
+        value: parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(prop), 10)
+      };
+    });
+  };
+
   var getBreakPoints = function getBreakPoints() {
-    var minSmall = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-sm'), 10);
-    var minMedium = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-md'), 10);
-    var minLarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-lg'), 10);
-    var minXlarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-xl'), 10); // update xSmall
+    // get breakpoints from Bootstrap CSS variables
+    var propsVal = getPropsValue();
 
-    breakPoints.xSmall.max = minSmall - 1; // update small
+    if (propsVal.length) {
+      for (var bp in propsVal) {
+        var key = nameMapping[propsVal[bp].name] ? nameMapping[propsVal[bp].name] : propsVal[bp].name;
+        var nextItem = parseInt(bp) + 1;
+        key in breakPoints || (breakPoints[key] = {}); // update Breakpoints
 
-    breakPoints.small.min = minSmall;
-    breakPoints.small.max = minMedium - 1; // update medium
+        breakPoints[key].min = propsVal[bp].value;
+        breakPoints[key].max = propsVal[nextItem] ? propsVal[nextItem].value - 1 : Infinity;
+      }
+    } else {
+      // If there are no css variables get the default breakpoints
+      breakPoints = defaultBreakPoints;
+    }
 
-    breakPoints.medium.min = minMedium;
-    breakPoints.medium.max = minLarge - 1; // update large
-
-    breakPoints.large.min = minLarge;
-    breakPoints.large.max = minXlarge - 1; // update XL
-
-    breakPoints.xLarge.min = minXlarge;
     breakPointsDetected = true;
   };
 
@@ -140,5 +170,5 @@
 
   return bsBreakpoints;
 
-}));
+})));
 //# sourceMappingURL=bs-breakpoints.js.map
