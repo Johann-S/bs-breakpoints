@@ -7,13 +7,14 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com/)
 [![JS gzip size](https://img.badgesize.io/Johann-S/bs-breakpoints/master/dist/bs-breakpoints.min.js?compression=gzip&label=JS+gzip+size)](https://github.com/Johann-S/bs-breakpoints/tree/master/dist/bs-breakpoints.min.js)
 
-A plugin which detect Bootstrap 4 breakpoints and emit when there is a change.
+A plugin which detect Bootstrap 4 & 5 breakpoints and emit when there is a change.
 
 You can use it on [React](https://stackblitz.com/edit/bs-breakpoints-react) and [Angular](https://stackblitz.com/edit/bs-breakpoints-angular) too because this plugin is written with the most used JavaScript framework: [VanillaJS](http://vanilla-js.com/).
 
 Features:
 
 - Works with Bootstrap 4
+- Works with Bootstrap 5
 - Works without *dependencies* and **jQuery**
 - **Can** work with jQuery if detected
 - Detect custom breakpoints in CSS properties

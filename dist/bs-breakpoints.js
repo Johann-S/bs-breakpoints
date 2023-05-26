@@ -1,13 +1,13 @@
 /*!
  * bsBreakpoints v1.1.1 (https://github.com/Johann-S/bs-breakpoints)
- * Copyright 2018 - 2019 Johann-S <johann.servoire@gmail.com>
+ * Copyright 2018 - 2023 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-breakpoints/blob/master/LICENSE)
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.bsBreakpoints = factory());
-}(this, function () { 'use strict';
+}(this, (function () { 'use strict';
 
   (function () {
     // Add polyfill for Custom Events
@@ -65,7 +65,16 @@
     var minSmall = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-sm'), 10);
     var minMedium = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-md'), 10);
     var minLarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-lg'), 10);
-    var minXlarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-xl'), 10); // update xSmall
+    var minXlarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-xl'), 10);
+
+    if (isNaN(minSmall) && isNaN(minMedium) && isNaN(minLarge) && isNaN(minXlarge)) {
+      // Bootstrap 5 adds a prefix to the breakpoints
+      minSmall = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-sm'), 10);
+      minMedium = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-md'), 10);
+      minLarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-lg'), 10);
+      minXlarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-xl'), 10);
+    } // update xSmall
+
 
     breakPoints.xSmall.max = minSmall - 1; // update small
 
@@ -140,5 +149,5 @@
 
   return bsBreakpoints;
 
-}));
+})));
 //# sourceMappingURL=bs-breakpoints.js.map
