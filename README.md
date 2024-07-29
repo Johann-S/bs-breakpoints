@@ -4,20 +4,18 @@
 [![dependencies Status](https://img.shields.io/david/Johann-S/bs-breakpoints.svg)](https://david-dm.org/Johann-S/bs-breakpoints)
 [![devDependencies Status](https://img.shields.io/david/dev/Johann-S/bs-breakpoints.svg)](https://david-dm.org/Johann-S/bs-breakpoints?type=dev)
 [![Build Status](https://github.com/Johann-S/bs-breakpoints/workflows/Tests/badge.svg)](https://github.com/Johann-S/bs-breakpoints/actions?workflow=Tests)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com/)
 [![JS gzip size](https://img.badgesize.io/Johann-S/bs-breakpoints/master/dist/bs-breakpoints.min.js?compression=gzip&label=JS+gzip+size)](https://github.com/Johann-S/bs-breakpoints/tree/master/dist/bs-breakpoints.min.js)
 
-A plugin which detect Bootstrap 4 breakpoints and emit when there is a change.
+A plugin which detect Bootstrap 5 breakpoints and emit when there is a change.
 
 You can use it on [React](https://stackblitz.com/edit/bs-breakpoints-react) and [Angular](https://stackblitz.com/edit/bs-breakpoints-angular) too because this plugin is written with the most used JavaScript framework: [VanillaJS](http://vanilla-js.com/).
 
 Features:
 
-- Works with Bootstrap 4
-- Works without *dependencies* and **jQuery**
-- **Can** work with jQuery if detected
+- Works with Bootstrap 5
+- Works without *dependencies*
 - Detect custom breakpoints in CSS properties
-- Built in UMD to be used everywhere
+- Built in ES and UMD to be used everywhere
 - Small, only **2kb** and less if you gzip it
 
 ## Table of contents
@@ -55,60 +53,49 @@ We expose one global variable available everywhere: `bsBreakpoints`
 Vanilla JS
 ```js
 document.addEventListener('DOMContentLoaded', function () {
-  bsBreakpoints.init()
-})
-```
-
-With jQuery
-```js
-$(document).ready(function () {
-  bsBreakpoints.init()
+  const detector = new bsBreakpoints.BreakpointDetector();
 })
 ```
 
 ### Use it with npm
 
 ```js
-import bsBreakpoints from 'bs-breakpoints'
+import { BreakpointDetector } from 'bs-breakpoints'
 ```
 
-For more examples check out [this file](https://github.com/Johann-S/bs-breakpoints/blob/master/tests/index.html).
+For UMD examples check out [this file](https://github.com/Johann-S/bs-breakpoints/blob/master/tests/index.html).
 
-This library is UMD ready so you can use it everywhere.
+This library is ES and UMD ready so you can use it everywhere.
 
 ## Methods
 
-### init
+### constructor
 
 Will detect the current breakpoint and emit `init.bs.breakpoint` event.
 
 It'll add a listener on the window `resize` event and emit `new.bs.breakpoint` event.
 
-### detectBreakpoint
+### getBreakPoints
 
-Detect the current breakpoint and return it.
+Detect and update breakpoints base on CSS properties
 
 ### getCurrentBreakpoint
 
-Return the current breakpoint.
+Detect and return the current breakpoint.
 
 ## Events
 
 ### init.bs.breakpoint
 
-Emitted just once when `bsBreakpoints.init()` is called.
+Emitted just once when a new instance of `BreakpointDetector` is created.
 
-This event contains the current breakpoint in the [detail](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/detail) attribute in VanillaJS and for those who use jQuery we add a `breakpoint` key in jQuery's events.
+This event contains the current breakpoint in the [detail](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/detail) attribute.
 
 ### new.bs.breakpoint
 
 This event is emitted when there is a breakpoint changes.
 
-This event contains the current breakpoint in the [detail](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/detail) attribute in VanillaJS and for those who use jQuery we add a `breakpoint` key in jQuery's events.
-
-## Support me
-
-If you want to thank me, you can support me and become my [Patron](https://www.patreon.com/jservoire)
+This event contains the current breakpoint in the [detail](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/detail) attribute.
 
 ## License
 
