@@ -43,8 +43,8 @@ yarn add bs-breakpoints
 
 CDN | Link
 ------------ | -------------
-jsDelivr | [`https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.js`](https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.js)
-jsDelivr, minified | [`https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.min.js`](https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.min.js)
+jsDelivr ES version | [`https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.js`](https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.js)
+jsDelivr UMD version | [`https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.umd.cjs`](https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.umd.cjs)
 
 ## How to use it
 
@@ -80,9 +80,25 @@ It'll add a listener on the window `resize` event and emit `new.bs.breakpoint` e
 
 Allow you to add a new breakpoint.
 
+```js
+import { BreakpointDetector } from 'bs-breakpoints';
+
+const detector = new BreakpointDetector();
+
+detector.addBreakpoint('largest', { min: 1600, max: Infinity });
+```
+
 ### removeBreakpoint
 
 Allow you to remove an existing breakpoint.
+
+```js
+import { BreakpointDetector } from 'bs-breakpoints';
+
+const detector = new BreakpointDetector();
+
+detector.removeBreakpoint('largest');
+```
 
 ### getBreakPoints
 
