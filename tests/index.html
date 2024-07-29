@@ -11,26 +11,27 @@
       <h1>bsBreakpoints</h1>
       <div>
         <p>
-          Current breakpoint : <span id="cBreakPoint" class="badge badge-primary"></span>
+          Current breakpoint : <span id="cBreakPoint" class="badge rounded-pill text-bg-primary"></span>
         </p>
       </div>
     </div>
-    <script src="dist/bs-breakpoints.js"></script>
+    <script src="../dist/bs-breakpoints.umd.cjs"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        var cBreakPoint = document.getElementById('cBreakPoint')
+        const cBreakPoint = document.getElementById('cBreakPoint');
 
+        console.log(cBreakPoint);
         window.addEventListener('init.bs.breakpoint', function (e) {
-          cBreakPoint.textContent = e.detail
-          console.warn(e.detail)
-        })
+          cBreakPoint.textContent = e.detail.breakpoint;
+          console.warn(e.detail, e.detail.breakpoint);
+        });
 
         window.addEventListener('new.bs.breakpoint', function (e) {
-          cBreakPoint.textContent = e.detail
-          console.warn(e.detail)
-        })
+          cBreakPoint.textContent = e.detail.breakpoint;
+          console.warn(e.detail, e.detail.breakpoint);
+        });
 
-        bsBreakpoints.init()
+        const detector = new bsBreakpoints.BreakpointDetector();
       })
     </script>
   </body>
