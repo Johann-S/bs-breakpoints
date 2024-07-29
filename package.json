@@ -1,6 +1,6 @@
 {
   "name": "bs-breakpoints",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "A plugin which detect Bootstrap 4 breakpoints and emit when there is a change",
   "author": "Johann-S <johann.servoire@gmail.com>",
   "main": "dist/bs-breakpoints.umd.cjs",
