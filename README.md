@@ -75,6 +75,14 @@ Will detect the current breakpoint and emit `init.bs.breakpoint` event.
 
 It'll add a listener on the window `resize` event and emit `new.bs.breakpoint` event.
 
+### addBreakpoint
+
+Allow you to add a new breakpoint.
+
+### removeBreakpoint
+
+Allow you to remove an existing breakpoint.
+
 ### getBreakPoints
 
 Detect and update breakpoints base on CSS properties

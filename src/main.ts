@@ -21,6 +21,18 @@ export class BreakpointDetector {
     });
   }
 
+  addBreakpoint(name: string, breakpoint: Breakpoint) {
+    this.breakPoints[name] = breakpoint;
+
+    return this.breakPoints;
+  }
+
+  removeBreakpoint(name: string) {
+    delete this.breakPoints[name];
+
+    return this.breakPoints;
+  }
+
   getBreakPoints() {
     const minSmall = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-sm'), 10);
     const minMedium = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-md'), 10);

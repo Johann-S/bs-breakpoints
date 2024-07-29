@@ -26,30 +26,36 @@ const s = {
 };
 var a = /* @__PURE__ */ ((r) => (r.INIT = "init.bs.breakpoint", r.NEW = "new.bs.breakpoint", r))(a || {});
 class m {
-  breakPoints = s;
+  breakPoints = { ...s };
   currentBreakpoint = "medium";
   constructor() {
     typeof window > "u" || (this.getBreakPoints(), this.getCurrentBreakpoint(), this.dispatchBreakpoint(a.INIT), window.addEventListener("resize", () => {
       this.getCurrentBreakpoint(), this.dispatchBreakpoint(a.NEW);
     }));
   }
+  addBreakpoint(t, e) {
+    return this.breakPoints[t] = e, this.breakPoints;
+  }
+  removeBreakpoint(t) {
+    return delete this.breakPoints[t], this.breakPoints;
+  }
   getBreakPoints() {
-    const t = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--bs-breakpoint-sm"), 10), n = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--bs-breakpoint-md"), 10), e = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--bs-breakpoint-lg"), 10), i = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--bs-breakpoint-xl"), 10), o = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--bs-breakpoint-xxl"), 10);
-    this.breakPoints.xSmall.max = t - 1, this.breakPoints.small.min = t, this.breakPoints.small.max = n - 1, this.breakPoints.medium.min = n, this.breakPoints.medium.max = e - 1, this.breakPoints.large.min = e, this.breakPoints.large.max = i - 1, this.breakPoints.xLarge.min = i, this.breakPoints.xLarge.max = o - 1, this.breakPoints.xxLarge.min = o;
+    const t = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--bs-breakpoint-sm"), 10), e = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--bs-breakpoint-md"), 10), n = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--bs-breakpoint-lg"), 10), i = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--bs-breakpoint-xl"), 10), o = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--bs-breakpoint-xxl"), 10);
+    return this.breakPoints.xSmall.max = t - 1, this.breakPoints.small.min = t, this.breakPoints.small.max = e - 1, this.breakPoints.medium.min = e, this.breakPoints.medium.max = n - 1, this.breakPoints.large.min = n, this.breakPoints.large.max = i - 1, this.breakPoints.xLarge.min = i, this.breakPoints.xLarge.max = o - 1, this.breakPoints.xxLarge.min = o, this.breakPoints;
   }
   getCurrentBreakpoint() {
-    const t = Math.max(document.documentElement.clientWidth, window.innerWidth || 0), e = Object.keys(this.breakPoints).find(
+    const t = Math.max(document.documentElement.clientWidth, window.innerWidth || 0), n = Object.keys(this.breakPoints).find(
       (i) => t <= this.breakPoints[i].max && t >= this.breakPoints[i].min
     );
-    return e ? (this.currentBreakpoint = e, e) : this.currentBreakpoint;
+    return n ? (this.currentBreakpoint = n, n) : this.currentBreakpoint;
   }
   dispatchBreakpoint(t) {
-    const n = new CustomEvent(t, {
+    const e = new CustomEvent(t, {
       detail: {
         breakpoint: this.currentBreakpoint
       }
     });
-    window.dispatchEvent(n);
+    window.dispatchEvent(e);
   }
 }
 export {
