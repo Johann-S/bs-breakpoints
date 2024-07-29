@@ -49,6 +49,8 @@ export class BreakpointDetector {
 
     // update XXL
     this.breakPoints.xxLarge.min = minXxLarge;
+
+    return this.breakPoints;
   }
 
   getCurrentBreakpoint(): string {
