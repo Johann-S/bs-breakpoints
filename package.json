@@ -28,7 +28,8 @@
     "preview": "vite preview"
   },
   "files": [
-    "dist"
+    "dist",
+    "MIGRATION.md"
   ],
   "keywords": [
     "bootstrap",

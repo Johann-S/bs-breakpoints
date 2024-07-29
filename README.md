@@ -15,8 +15,9 @@ Features:
 - Works with Bootstrap 5
 - Works without *dependencies*
 - Detect custom breakpoints in CSS properties
-- Built in ES and UMD to be used everywhere
+- Built in **ES** and **UMD** to be used everywhere
 - Small, only **2kb** and less if you gzip it
+- Allow to add or remove breakpoints
 
 ## Table of contents
 
@@ -50,7 +51,7 @@ jsDelivr, minified | [`https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-break
 You should wait for the document ready event and call the `init` method to detect breakpoint changes.
 We expose one global variable available everywhere: `bsBreakpoints`
 
-Vanilla JS
+In browser with UMD version:
 ```js
 document.addEventListener('DOMContentLoaded', function () {
   const detector = new bsBreakpoints.BreakpointDetector();
@@ -60,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
 ### Use it with npm
 
 ```js
-import { BreakpointDetector } from 'bs-breakpoints'
+import { BreakpointDetector } from 'bs-breakpoints';
 ```
 
 For UMD examples check out [this file](https://github.com/Johann-S/bs-breakpoints/blob/master/tests/index.html).
