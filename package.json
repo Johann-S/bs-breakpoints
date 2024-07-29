@@ -12,7 +12,7 @@
       "import": "./dist/bs-breakpoints.js",
       "require": "./dist/bs-breakpoints.umd.cjs"
     }
-  }
+  },
   "bugs": {
     "url": "https://github.com/Johann-S/bs-breakpoints/issues"
   },
