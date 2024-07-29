@@ -4,7 +4,7 @@ import { BsBreakpointsEvents } from './const';
 
 export class BreakpointDetector {
   private breakPoints: Record<string, Breakpoint> = { ...bs5BreakPoints };
-  private currentBreakpoint: string = 'medium';
+  private currentBreakpoint = 'medium';
 
   constructor() {
     if (typeof window === 'undefined') {
@@ -86,7 +86,7 @@ export class BreakpointDetector {
       detail: {
         breakpoint: this.currentBreakpoint,
       },
-    })
+    });
 
     window.dispatchEvent(event);
   }
