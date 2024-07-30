@@ -1,21 +1,20 @@
 import { Breakpoint } from './models/breakpoint.model';
 import { bs5BreakPoints } from './bs5-breakpoints';
 import { BsBreakpointsEvents } from './const';
+import { getWindow } from './util';
 
 export class BreakpointDetector {
+  private readonly window: Window;
   private breakPoints: Record<string, Breakpoint> = { ...bs5BreakPoints };
   private currentBreakpoint = 'medium';
 
   constructor() {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
+    this.window = getWindow(typeof window !== 'undefined');
     this.getBreakPoints();
     this.getCurrentBreakpoint();
     this.dispatchBreakpoint(BsBreakpointsEvents.INIT);
 
-    window.addEventListener('resize', () => {
+    this.window.addEventListener('resize', () => {
       this.getCurrentBreakpoint();
       this.dispatchBreakpoint(BsBreakpointsEvents.NEW);
     });
@@ -34,11 +33,13 @@ export class BreakpointDetector {
   }
 
   getBreakPoints() {
-    const minSmall = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-sm'), 10);
-    const minMedium = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-md'), 10);
-    const minLarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-lg'), 10);
-    const minExtraLarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-xl'), 10);
-    const minXxLarge = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-xxl'), 10);
+    const domDocument = this.window.document.documentElement;
+
+    const minSmall = parseInt(this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-sm'), 10);
+    const minMedium = parseInt(this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-md'), 10);
+    const minLarge = parseInt(this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-lg'), 10);
+    const minExtraLarge = parseInt(this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-xl'), 10);
+    const minXxLarge = parseInt(this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-xxl'), 10);
 
     // update xSmall
     this.breakPoints.xSmall.max = minSmall - 1;
@@ -66,7 +67,7 @@ export class BreakpointDetector {
   }
 
   getCurrentBreakpoint(): string {
-    const widthWindow = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    const widthWindow = Math.max(this.window.document.documentElement.clientWidth, this.window.innerWidth || 0);
     const breakpointsKeys = Object.keys(this.breakPoints);
     const newCurrentBreakpoint = breakpointsKeys.find(
       (fKey: string) => widthWindow <= this.breakPoints[fKey].max && widthWindow >= this.breakPoints[fKey].min
@@ -88,6 +89,6 @@ export class BreakpointDetector {
       },
     });
 
-    window.dispatchEvent(event);
+    this.window.dispatchEvent(event);
   }
 }

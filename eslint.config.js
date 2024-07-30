@@ -14,9 +14,9 @@ export default tseslint.config(
       '@stylistic/ts': stylisticTs
     },
     languageOptions: {
-        globals: {
-            ...globals.browser
-        }
+      globals: {
+        ...globals.browser
+      }
     },
     rules: {
       '@stylistic/ts/indent': ['error', 2],
