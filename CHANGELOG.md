@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/Johann-S/bs-breakpoints/compare/v2.0.0...v2.0.1) (2024-07-30)
+
+
+### Bug Fixes
+
+* **lint:** add more rules to enforce cs ([bae2453](https://github.com/Johann-S/bs-breakpoints/commit/bae2453284f834db692c99790c8355ae01aa5f78))
+* **ssr:** do not access window directly ([1f5b584](https://github.com/Johann-S/bs-breakpoints/commit/1f5b584069cde2afd334dd4b0d8221ad5165d516))
+
 ## [2.0.0](https://github.com/Johann-S/bs-breakpoints/compare/v1.1.1...v2.0.0) (2024-07-29)
 
 
