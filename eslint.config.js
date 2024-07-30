@@ -19,9 +19,11 @@ export default tseslint.config(
       }
     },
     rules: {
+      'max-len': ['error', {'code': 100 }],
       '@stylistic/ts/indent': ['error', 2],
       '@stylistic/ts/semi': 'error',
       '@stylistic/ts/brace-style': 'error',
+      '@stylistic/ts/quotes': ['error', 'single'],
       '@typescript-eslint/no-dynamic-delete': 'off',
     },
   }

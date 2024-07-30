@@ -35,11 +35,26 @@ export class BreakpointDetector {
   getBreakPoints() {
     const domDocument = this.window.document.documentElement;
 
-    const minSmall = parseInt(this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-sm'), 10);
-    const minMedium = parseInt(this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-md'), 10);
-    const minLarge = parseInt(this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-lg'), 10);
-    const minExtraLarge = parseInt(this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-xl'), 10);
-    const minXxLarge = parseInt(this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-xxl'), 10);
+    const minSmall = parseInt(
+      this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-sm'),
+      10,
+    );
+    const minMedium = parseInt(
+      this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-md'),
+      10,
+    );
+    const minLarge = parseInt(
+      this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-lg'),
+      10,
+    );
+    const minExtraLarge = parseInt(
+      this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-xl'),
+      10,
+    );
+    const minXxLarge = parseInt(
+      this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-xxl'),
+      10,
+    );
 
     // update xSmall
     this.breakPoints.xSmall.max = minSmall - 1;
@@ -67,10 +82,14 @@ export class BreakpointDetector {
   }
 
   getCurrentBreakpoint(): string {
-    const widthWindow = Math.max(this.window.document.documentElement.clientWidth, this.window.innerWidth || 0);
+    const widthWindow = Math.max(
+      this.window.document.documentElement.clientWidth,
+      this.window.innerWidth || 0
+    );
     const breakpointsKeys = Object.keys(this.breakPoints);
     const newCurrentBreakpoint = breakpointsKeys.find(
-      (fKey: string) => widthWindow <= this.breakPoints[fKey].max && widthWindow >= this.breakPoints[fKey].min
+      (fKey: string) => widthWindow <= this.breakPoints[fKey].max
+        && widthWindow >= this.breakPoints[fKey].min
     );
 
     if (!newCurrentBreakpoint) {
