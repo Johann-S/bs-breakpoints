@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/Johann-S/bs-breakpoints/compare/v2.0.1...v2.1.0) (2024-08-01)
+
+
+### Features
+
+* **ci:** add coveralls ([4614ab7](https://github.com/Johann-S/bs-breakpoints/commit/4614ab76f200d59092019aff0ac0f940c48b0fab))
+* **core:** allow to know if gt or lt compare to current breakpoint ([bb7ac56](https://github.com/Johann-S/bs-breakpoints/commit/bb7ac5640556b2323c6636238316e152975a7375))
+* **testing:** use vitest to do some unit tests ([a186f8b](https://github.com/Johann-S/bs-breakpoints/commit/a186f8b7184a1abd040eaffcc3a99059927aa13e))
+
+
+### Bug Fixes
+
+* **build:** use tsc to typecheck not to build ([58ac0bc](https://github.com/Johann-S/bs-breakpoints/commit/58ac0bc03cc92a323d2371381512f45020784754))
+* **coverage:** add reporters ([5beb382](https://github.com/Johann-S/bs-breakpoints/commit/5beb382965621ad9d9211340d3adc9bf1999e860))
+* **package:** change bootstrap support ([2d7bf23](https://github.com/Johann-S/bs-breakpoints/commit/2d7bf23e101ac7c8c43d6c2578947b026308d614))
+
 ### [2.0.1](https://github.com/Johann-S/bs-breakpoints/compare/v2.0.0...v2.0.1) (2024-07-30)
 
 

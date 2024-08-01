@@ -9,5 +9,8 @@ export declare class BreakpointDetector {
     removeBreakpoint(name: string): Record<string, Breakpoint>;
     getBreakPoints(): Record<string, Breakpoint>;
     getCurrentBreakpoint(): string;
+    isGreaterThan(breakpointKey: string): boolean;
+    isLowerThan(breakpointKey: string): boolean;
     private dispatchBreakpoint;
+    private getSortedBreakpoints;
 }
