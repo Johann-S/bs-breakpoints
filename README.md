@@ -106,6 +106,14 @@ Detect and update breakpoints base on CSS properties
 
 Detect and return the current breakpoint.
 
+### isGreaterThan
+
+Allow you to know if the current breakpoint is greater than the one supplied.
+
+### isLowerThan
+
+Allow you to know if the current breakpoint is lower than the one supplied.
+
 ## Events
 
 ### init.bs.breakpoint

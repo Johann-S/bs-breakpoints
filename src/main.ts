@@ -38,23 +38,23 @@ export class BreakpointDetector {
     const minSmall = parseInt(
       this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-sm'),
       10,
-    );
+    ) || this.breakPoints.small.min;
     const minMedium = parseInt(
       this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-md'),
       10,
-    );
+    ) || this.breakPoints.medium.min;
     const minLarge = parseInt(
       this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-lg'),
       10,
-    );
+    ) || this.breakPoints.large.min;
     const minExtraLarge = parseInt(
       this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-xl'),
       10,
-    );
+    ) || this.breakPoints.xLarge.min;
     const minXxLarge = parseInt(
       this.window.getComputedStyle(domDocument).getPropertyValue('--bs-breakpoint-xxl'),
       10,
-    );
+    ) || this.breakPoints.xxLarge.min;;
 
     // update xSmall
     this.breakPoints.xSmall.max = minSmall - 1;
@@ -101,6 +101,28 @@ export class BreakpointDetector {
     return newCurrentBreakpoint;
   }
 
+  isGreaterThan(breakpointKey: string): boolean {
+    if (!this.breakPoints[breakpointKey]) {
+      throw new Error(`unknown breakpoint: ${breakpointKey}`);
+    }
+
+    const currentBreakpointKey = this.getCurrentBreakpoint();
+    const breakpointsOrder = this.getSortedBreakpoints();
+
+    return breakpointsOrder.indexOf(currentBreakpointKey) > breakpointsOrder.indexOf(breakpointKey);
+  }
+
+  isLowerThan(breakpointKey: string): boolean {
+    if (!this.breakPoints[breakpointKey]) {
+      throw new Error(`unknown breakpoint: ${breakpointKey}`);
+    }
+
+    const currentBreakpointKey = this.getCurrentBreakpoint();
+    const breakpointsOrder = this.getSortedBreakpoints();
+
+    return breakpointsOrder.indexOf(currentBreakpointKey) < breakpointsOrder.indexOf(breakpointKey);
+  }
+
   private dispatchBreakpoint(eventName: BsBreakpointsEvents) {
     const event = new CustomEvent(eventName, {
       detail: {
@@ -109,5 +131,14 @@ export class BreakpointDetector {
     });
 
     this.window.dispatchEvent(event);
+  }
+
+  private getSortedBreakpoints() {
+    return Object
+      .keys(this.breakPoints)
+      .sort(
+        (bpKey1: string, bpKey2: string) =>
+          this.breakPoints[bpKey1].min - this.breakPoints[bpKey2].min
+      );
   }
 }
