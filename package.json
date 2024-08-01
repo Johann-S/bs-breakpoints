@@ -21,10 +21,11 @@
   },
   "scripts": {
     "lint": "eslint ./src",
-    "test": "npm run lint && npm run build",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run lint && npm run typecheck && npm run build",
     "release": "standard-version -a",
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "files": [
