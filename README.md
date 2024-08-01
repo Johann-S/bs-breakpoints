@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/bs-breakpoints.svg)](https://www.npmjs.com/package/bs-breakpoints)
 [![Build Status](https://github.com/Johann-S/bs-breakpoints/workflows/Tests/badge.svg)](https://github.com/Johann-S/bs-breakpoints/actions?workflow=Tests)
+![Coveralls](https://img.shields.io/coverallsCoverage/github/Johann-S/bs-breakpoints)
 [![JS gzip size](https://img.badgesize.io/Johann-S/bs-breakpoints/master/dist/bs-breakpoints.js?compression=gzip&label=JS+gzip+size)](https://github.com/Johann-S/bs-breakpoints/tree/master/dist/bs-breakpoints.js)
 
 A plugin which detect Bootstrap 5 breakpoints and emit when there is a change.
