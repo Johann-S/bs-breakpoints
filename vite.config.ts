@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import browserslistToEsbuild from 'browserslist-to-esbuild';
 import dts from 'vite-plugin-dts';
@@ -14,5 +15,12 @@ export default defineConfig({
       name: 'bsBreakpoints',
       formats: ['es', 'umd'],
     }
+  },
+  test: {
+    environment: 'jsdom',
+    coverage: {
+      include: ['src/**/*.ts'],
+      exclude: ['src/models/**', 'src/vite-env.d.ts'],
+    },
   },
 });
