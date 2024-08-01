@@ -21,6 +21,7 @@ export default defineConfig({
     coverage: {
       include: ['src/**/*.ts'],
       exclude: ['src/models/**', 'src/vite-env.d.ts'],
+      reporter: ['lcov', 'text', 'html', 'clover', 'json', 'cobertura']
     },
   },
 });
