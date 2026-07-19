@@ -15,8 +15,11 @@ export class BreakpointDetector {
     this.dispatchBreakpoint(BsBreakpointsEvents.INIT);
 
     this.window.addEventListener('resize', () => {
-      this.getCurrentBreakpoint();
-      this.dispatchBreakpoint(BsBreakpointsEvents.NEW);
+      const previousBreakpoint = this.currentBreakpoint;
+
+      if (this.getCurrentBreakpoint() !== previousBreakpoint) {
+        this.dispatchBreakpoint(BsBreakpointsEvents.NEW);
+      }
     });
   }
 
